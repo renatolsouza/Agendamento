@@ -1,11 +1,7 @@
 ﻿using Agendamento.App_Code.Funcoes;
 using Agendamento.App_Code.MySQL;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 public partial class Forms_Cadastro_Clinica_Cadastro : System.Web.UI.Page
 {
@@ -91,13 +87,13 @@ public partial class Forms_Cadastro_Clinica_Cadastro : System.Web.UI.Page
         var endereco = txtEndereco.Text.Trim();
         var cnpj = txtCnpj.Text.Trim();
         var telefone = txtTelefone.Text.Trim();
-       
+
 
         var respinclusao = Session["nome"];
         var datainclusao = hoje.ToString();
         var respalteracao = Session["nome"];
         var dataalteracao = hoje.ToString();
-       
+
 
         try
         {
@@ -123,5 +119,5 @@ public partial class Forms_Cadastro_Clinica_Cadastro : System.Web.UI.Page
     {
         Response.Redirect("~/Forms/Cadastro/clinica/Default.aspx");
     }
-   
+
 }

@@ -33,7 +33,7 @@ public partial class Forms_Cadastro_Paciente_Cadastro : System.Web.UI.Page
         {
             while (dr.Read())
             {
-                txtCodigo.Text = dr.GetInt32(dr.GetOrdinal("CODCLINICA")).ToString();
+                txtCodigo.Text = dr.GetInt32(dr.GetOrdinal("CODPACIENTE")).ToString();
                 txtNome.Text = dr.GetString(dr.GetOrdinal("NOME"));
                 txtEndereco.Text = dr.GetString(dr.GetOrdinal("ENDERECO"));
                 txtTelefone.Text = dr.GetString(dr.GetOrdinal("TELEFONE"));
@@ -87,7 +87,7 @@ public partial class Forms_Cadastro_Paciente_Cadastro : System.Web.UI.Page
         var endereco = txtEndereco.Text.Trim();
         var telefone = txtTelefone.Text.Trim();
         var Cpf = txtCpf.Text.Trim();
-        
+
 
 
         var respinclusao = Session["nome"];

@@ -1,13 +1,9 @@
 ﻿using Agendamento.App_Code.Funcoes;
 using Agendamento.App_Code.MySQL;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Forms_Cadasreo_Clinica_Default : System.Web.UI.Page
+public partial class Forms_Cadastro_Clinica_Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -20,7 +16,6 @@ public partial class Forms_Cadasreo_Clinica_Default : System.Web.UI.Page
         Grid_Clinica.DataBind();
         txtBuscar.Focus();
     }
-
 
     protected void TxtBuscarTextChanged(object sender, EventArgs e)
     {

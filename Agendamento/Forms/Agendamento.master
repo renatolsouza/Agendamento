@@ -1,0 +1,39 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Agendamento.master.cs" Inherits="Forms_Agendamento" %>
+<%@ Register TagPrefix="ajax" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit, Version=3.5.60501.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Agendamento</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="../App_Themes/Tema/Estilo.css" rel="stylesheet" type="text/css" />
+    <link href="../App_Themes/Tema/Estilo.css" rel="stylesheet" />
+</head>
+<body>
+    <form id="form1" runat="server">
+    <ajax:ToolkitScriptManager ID="SmGeral" runat="server" EnableScriptGlobalization="true">
+    <Scripts>
+        <asp:ScriptReference Path="~/Mascaras.js" />
+    </Scripts>
+    </ajax:ToolkitScriptManager>
+    <br/>
+<br/>
+<br/>
+   
+    <div id="divCont">
+        <div id="divContInt">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+             <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+            </asp:ContentPlaceHolder>
+             <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </div>
+    <div style="width: 900px; margin:0 auto; text-align:right;">
+    <a style="color: #FFF;">Desenvolvido por Renato Leandro (62) 98584-5372</a>
+    </div>
+    </form>
+</body>
+</html>

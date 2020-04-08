@@ -1,43 +1,20 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="Forms_Cadastro_Paciente_Default" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Forms/Agendamento.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="Forms_Cadastro_Paciente_Default" %>
 
-<%@ Register TagPrefix="ajax" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit, Version=3.5.60501.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e" %>
-
-
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title></title>
-    <link href="../../../App_Themes/Tema/Estilo.css" rel="stylesheet" />
-
-
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <style type="text/css">
         .auto-style1 {
             text-align: right;
         }
-
         .auto-style2 {
+            text-align: justify;
+        }
+        .auto-style3 {
             text-align: left;
         }
-
-        .auto-style3 {
-            margin-left: 121px;
-            margin-right: 248px;
-        }
     </style>
-
-
-</head>
-<body>
-    <form id="form1" runat="server">
-        <ajax:ToolkitScriptManager ID="SmGeral" runat="server" EnableScriptGlobalization="true">
-            <Scripts>
-                <asp:ScriptReference Path="~/Mascaras.js" />
-            </Scripts>
-        </ajax:ToolkitScriptManager>
-        <div class="auto-style3">
-
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    
             <div class="auto-style1">
                 <asp:UpdatePanel runat="server">
                     <ContentTemplate>
@@ -67,7 +44,7 @@
                             <br style="font-size: 5px;" />
                         </div>
 
-                        <div class="auto-style2">
+                        <div class="auto-style3">
                             <asp:GridView runat="server" ID="Grid_Paciente" CssClass="Grid GridLimpoNot" GridLines="0" AllowPaging="true" PageSize="10"
                                 OnPageIndexChanging="GridPacientePageIndexChanging"
                                 AutoGenerateColumns="false" OnRowCommand="GridPacienteRowCommand">
@@ -98,9 +75,9 @@
                 </asp:UpdatePanel>
             </div>
 
-        </div>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder3" Runat="Server">
+</asp:Content>
 
-
-    </form>
-</body>
-</html>

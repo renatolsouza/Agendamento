@@ -29,7 +29,7 @@ public partial class Forms_Cadastro_Plano_Cadastro : System.Web.UI.Page
 
     private void Carrega(string id)
     {
-        var dr = Clinica.Select(int.Parse(id));
+        var dr = Plano.Select(int.Parse(id));
         if (dr.HasRows)
         {
             while (dr.Read())

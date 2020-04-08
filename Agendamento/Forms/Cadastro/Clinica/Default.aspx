@@ -1,43 +1,20 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="Forms_Cadasreo_Clinica_Default" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Forms/Agendamento.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="Forms_Cadastro_Clinica_Default" %>
 
-<%@ Register TagPrefix="ajax" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit, Version=3.5.60501.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e" %>
-
-
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title></title>
-    <link href="../../../App_Themes/Tema/Estilo.css" rel="stylesheet" />
-
-
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <style type="text/css">
         .auto-style1 {
             text-align: right;
         }
-
         .auto-style2 {
+            text-align: justify;
+        }
+        .auto-style3 {
             text-align: left;
         }
-
-        .auto-style3 {
-            margin-left: 121px;
-            margin-right: 248px;
-        }
     </style>
-
-
-</head>
-<body>
-    <form id="form1" runat="server">
-        <ajax:ToolkitScriptManager ID="SmGeral" runat="server" EnableScriptGlobalization="true">
-            <Scripts>
-                <asp:ScriptReference Path="~/Mascaras.js" />
-            </Scripts>
-        </ajax:ToolkitScriptManager>
-        <div class="auto-style3">
-
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    
             <div class="auto-style1">
                 <asp:UpdatePanel runat="server">
                     <ContentTemplate>
@@ -67,13 +44,13 @@
                             <br style="font-size: 5px;" />
                         </div>
 
-                        <div class="auto-style2">
+                        <div class="auto-style3">
                             <asp:GridView runat="server" ID="Grid_Clinica" CssClass="Grid GridLimpoNot" GridLines="0" AllowPaging="true" PageSize="10"
                                 OnPageIndexChanging="GridClinicaPageIndexChanging"
                                 AutoGenerateColumns="false" OnRowCommand="GridClinicaRowCommand">
                                 <Columns>
                                     <asp:BoundField DataField="codclinica" HeaderText="CÓDIGO">
-                                        <ItemStyle Width="100px"></ItemStyle>
+                                        <ItemStyle Width="80px"></ItemStyle>
                                     </asp:BoundField>
                                     <asp:BoundField DataField="nome" HeaderText="NOME">
                                         <ItemStyle Width="200px"></ItemStyle>
@@ -82,7 +59,7 @@
                                         <ItemStyle Width="300px"></ItemStyle>
                                     </asp:BoundField>
                                     <asp:BoundField DataField="cnpj" HeaderText="CNPJ">
-                                        <ItemStyle Width="110px"></ItemStyle>
+                                        <ItemStyle Width="180px"></ItemStyle>
                                     </asp:BoundField>
                                     <asp:BoundField DataField="telefone" HeaderText="TELEFONE" />
                                     <asp:ButtonField ButtonType="Button" Text="EDITAR" CommandName="editar">
@@ -100,10 +77,9 @@
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </div>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder3" Runat="Server">
+</asp:Content>
 
-        </div>
-
-
-    </form>
-</body>
-</html>
