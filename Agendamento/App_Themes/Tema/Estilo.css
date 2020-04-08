@@ -1,0 +1,434 @@
+﻿body {
+    margin: 0;
+    font: 13px arial,helvetica,freesans,sans-serif;
+    background: url('/Imagens/Site/fundoEsc.jpg') no-repeat;
+    background-size: cover;
+}
+
+#divLoginB {
+    border: solid 1px #605a5a;
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 15%;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+
+#divLogin {
+    border: solid 1px #343131;
+    color: #FFF;
+    padding: 20px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+
+#divBotaoLogin {
+    width: 101%;
+    text-align: right;
+}
+
+    #divBotaoLogin .esq {
+        float: left;
+    }
+
+        #divBotaoLogin .esq a {
+            text-decoration: none;
+            color: #FFF;
+            position: absolute;
+            margin-top: 7px;
+        }
+
+            #divBotaoLogin .esq a:hover {
+                text-decoration: underline;
+            }
+
+    #divBotaoLogin .dir {
+        float: right;
+    }
+
+select {
+    border: solid 1px #8b8484;
+    padding: 4px;
+}
+
+    select:hover, select:focus {
+        background-color: ##cad8f7;
+    }
+
+input[type=text] {
+    border: solid 1px #8b8484;
+    padding: 5px;
+}
+
+    input[type=text]:hover, input[type=text]:focus {
+        background-color: ##cad8f7;
+    }
+
+textarea {
+    border: solid 1px #8b8484;
+    padding: 5px;
+}
+
+    textarea:hover, textarea:focus {
+        background-color: ##cad8f7;
+    }
+
+input[type=password] {
+    border: solid 1px #8b8484;
+    padding: 5px;
+}
+
+    input[type=password]:hover, input[type=password]:focus {
+        background-color: ##cad8f7;
+    }
+
+input[type=submit] {
+    font-size: 13px;
+    font-weight: normal;
+    margin: 0 0 0 1em;
+    position: relative;
+    top: -5px;
+    left: -12px;
+    width: 101px;
+}
+
+.g-button {
+    -moz-user-select: none;
+    background-color: #F5F5F5;
+    background-image: -moz-linear-gradient(center top, #F5F5F5, #F1F1F1);
+    border: 1px solid #DCDCDC;
+    border-radius: 2px 2px 2px 2px;
+    color: #444444;
+    cursor: default;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: bold;
+    height: 39px;
+    line-height: 27px;
+    min-width: 46px;
+    padding: 0 8px;
+    text-align: center;
+    transition: all 0.218s ease 0s;
+}
+
+.g-button-red {
+    background-color: #3670d1;
+    background-image: -moz-linear-gradient(center top, #3949dd, #3642d1);
+    border: 1px solid transparent;
+    color: #FFFFFF;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+}
+
+    .g-button-red:hover {
+        cursor: pointer;
+        background-color: #1D0E09;
+        background-image: -moz-linear-gradient(center top, #3642d1, #1D0E09);
+        border: 1px solid #1D0E09;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        color: #FFFFFF;
+        text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+    }
+
+    .g-button-red:active {
+        background-color: #1D0E09;
+        background-image: -moz-linear-gradient(center top, #3642d1, #1D0E09);
+        border: 1px solid #1D0E09;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) inset;
+        color: #FFFFFF;
+    }
+
+    .g-button-red:focus {
+        border-color: #1D0E09;
+    }
+
+
+
+        .g-button-submit:focus:hover, .g-button-share:focus:hover, .g-button-red:focus:hover {
+            box-shadow: 0 0 0 1px #FFFFFF inset, 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+    .g-button-red:visited, .g-button-share:visited, .g-button-submit:visited {
+        color: #FFFFFF;
+    }
+
+    .g-button-submit:focus, .g-button-share:focus, .g-button-red:focus {
+        box-shadow: 0 0 0 1px #FFFFFF inset;
+    }
+
+#DivMensagem {
+    margin: 0 auto;
+    width: 300px;
+    border: solid 1px #605a5a;
+    font-size: 13px;
+    color: #000;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: ##cad8f7;
+}
+
+#DivMensagemInt {
+    border: solid 1px #343131;
+    border-radius: 7px;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+}
+
+#divTopo {
+    margin: 0 auto;
+    height: 120px;
+    width: 1000px;
+}
+
+#divCont {
+    margin: 0 auto;
+    border: solid 1px #605a5a;
+    width: 950px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+
+#divContInt {
+    border: solid 1px #343131;
+    background-color: #FFF;
+    min-height: 200px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    padding: 15px;
+}
+
+h1 {
+    margin-top: 0px;
+    font-size: 18px;
+}
+
+.divGrid {
+    border: solid 1px #8b8484;
+    padding: 2px;
+}
+/*Ajax*/
+.ModalBackGround {
+    z-index: 111 !important;
+    background-color: White;
+}
+
+.ModalBackGround2 {
+    z-index: 1151 !important;
+    background-color: White;
+}
+
+.ModalPopUp {
+    border: solid 3px #18467d;
+    font-size: 12px;
+    background-color: #FFF;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    z-index: 110;
+}
+
+.ModalPopUp2 {
+    border: solid 3px #18467d;
+    font-size: 12px;
+    background-color: #FFF;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    z-index: 1150;
+}
+
+.ModalTitulo {
+    width: 99%;
+    margin: 5px;
+    text-align: right;
+}
+
+.FecharModal {
+    border: solid 2px #18467d;
+    font-weight: bold;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+    .FecharModal:hover {
+        background-color: Red;
+        color: #FFFFFF;
+    }
+
+.Grid {
+    width: 100%;
+}
+
+    .Grid th {
+        background-color: #10178c;
+        color: #FFF;
+        text-align: left;
+    }
+
+    .Grid tr:hover {
+        background-color: #cad8f7;
+    }
+
+    .Grid input[type=button] {
+        border: solid 1px #10178c;
+        color: #10178c;
+    }
+
+        .Grid input[type=button]:hover {
+            background-color: #10178c;
+            color: #FFF;
+            cursor: pointer;
+            border: solid 1px #000;
+        }
+
+.imgLogo {
+    position: absolute;
+    margin-left: -45px;
+    margin-top: -8px;
+}
+
+#divMenu {
+    float: left;
+    margin-top: 73px;
+}
+
+    #divMenu ul {
+    }
+
+        #divMenu ul li {
+        }
+
+            #divMenu ul li a {
+                padding: 10px;
+                text-decoration: none;
+                color: White;
+            }
+
+                #divMenu ul li a:hover {
+                    background-color: #FFF;
+                    color: #000;
+                }
+
+.Modal {
+    background: #FFFFFF;
+    z-index: 1110;
+    padding: 3px;
+    font-size: 12px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border: solid 5px #000;
+}
+
+.modalTitilo {
+    cursor: move;
+    padding: 10px;
+}
+
+    .modalTitilo h1 {
+        color: #0f1778;
+    }
+
+.FecharModal {
+    background: url('/Imagens/Site/remove.png') no-repeat;
+    padding: 8px;
+    position: absolute;
+    margin-top: -40px;
+    margin-left: -10px;
+}
+
+.modalBackground {
+    background-color: #000;
+    filter: alpha(opacity=45);
+    opacity: 0.8;
+    z-index: 1111;
+}
+
+
+h3 {
+    font-size: 15px;
+    color: #10178c;
+}
+
+.linkInicioIcones {
+    text-decoration: none;
+    color: #000;
+}
+
+.divInicioIcones {
+    border: solid 1px #CCC;
+    padding: 5px;
+}
+
+    .divInicioIcones:hover {
+        border: solid 1px GrayText;
+    }
+
+.divImgInicio {
+    border: solid 1px #CCC;
+    padding: 1px;
+}
+
+    .divImgInicio:hover {
+        border: solid 1px #000;
+    }
+
+.divMensInicio {
+    border: Solid 1px #CCC;
+    padding: 7px;
+    font-size: 20px;
+}
+
+    .divMensInicio:hover {
+        border: solid 1px GrayText;
+    }
+
+    .divMensInicio a {
+        text-decoration: none;
+        color: #10178c;
+    }
+
+        .divMensInicio a:hover {
+            text-decoration: underline;
+        }
+
+
+.GridLimpoNot {
+    border: 0 None transparent;
+    margin-left: 0px;
+}
+
+    .GridLimpoNot span {
+        padding: 3px 7px 3px 7px;
+        background-color: #232b8b;
+        border: 1px solid #232b8b;
+        -moz-border-radius: 4px;
+        -khtml-border-radius: 4px;
+        -webkit-border-radius: 4px;
+        color: #FFF;
+    }
+
+    .GridLimpoNot tr td table tr td a {
+        padding: 3px 7px 3px 7px;
+        border: 1px solid transparent;
+        text-decoration: none;
+        color: Gray;
+        -moz-border-radius: 4px;
+        -khtml-border-radius: 4px;
+        -webkit-border-radius: 4px;
+    }
+
+        .GridLimpoNot tr td table tr td a:hover {
+            background: #FFF;
+            border-color: #3346cd;
+        }
+
+    .GridLimpoNot th {
+        border-color: #FFF;
+        border-width: 0px;
+        border-style: none;
+    }
