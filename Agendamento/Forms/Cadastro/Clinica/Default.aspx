@@ -56,7 +56,7 @@
                                         <ItemStyle Width="200px"></ItemStyle>
                                     </asp:BoundField>
                                     <asp:BoundField DataField="endereco" HeaderText="ENDEREÇO">
-                                        <ItemStyle Width="300px"></ItemStyle>
+                                        <ItemStyle Width="250px"></ItemStyle>
                                     </asp:BoundField>
                                     <asp:BoundField DataField="cnpj" HeaderText="CNPJ">
                                         <ItemStyle Width="180px"></ItemStyle>
