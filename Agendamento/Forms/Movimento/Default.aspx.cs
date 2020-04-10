@@ -33,7 +33,7 @@ public partial class Forms_Movimento_Default : System.Web.UI.Page
 
                     var hoje = DateTime.Now;
                     txtDataAgendamento.Text = hoje.ToShortDateString();
-                    CarregaAgenda();
+                    CarregaAgendaData();
                 }
             }
             catch
@@ -50,23 +50,23 @@ public partial class Forms_Movimento_Default : System.Web.UI.Page
 
     private void Carrega(string id)
     {
-        var dr = Agenda.Select(int.Parse(id));
-        if (dr.HasRows)
-        {
-            while (dr.Read())
-            {
-                txtCodigo.Text = dr.GetInt32(dr.GetOrdinal("id")).ToString();
-                //txtCodPlano.Text = dr.GetString(dr.GetOrdinal("NUMEROPlano"));
-                txtDataAgendamento.Text = dr.GetString(dr.GetOrdinal("DATAENTREGA")).ToString();
-                // txtCodigoUnidade.Text = dr.GetInt32(dr.GetOrdinal("CODUNIDADE")).ToString();
-                BuscaPaciente(dr.GetInt32(dr.GetOrdinal("CODUNIDADE")));
+        //var dr = Agenda.Select(int.Parse(id));
+        //if (dr.HasRows)
+        //{
+        //    while (dr.Read())
+        //    {
+        //        txtCodigo.Text = dr.GetInt32(dr.GetOrdinal("id")).ToString();
+        //        //txtCodPlano.Text = dr.GetString(dr.GetOrdinal("NUMEROPlano"));
+        //        txtDataAgendamento.Text = dr.GetString(dr.GetOrdinal("DATAENTREGA")).ToString();
+        //        // txtCodigoUnidade.Text = dr.GetInt32(dr.GetOrdinal("CODUNIDADE")).ToString();
+        //        BuscaPaciente(dr.GetInt32(dr.GetOrdinal("CODUNIDADE")));
 
-                //ddlTipoPlano.SelectedIndex = int.Parse(dr.GetString(dr.GetOrdinal("TIPOENTREGA")));
+        //        //ddlTipoPlano.SelectedIndex = int.Parse(dr.GetString(dr.GetOrdinal("TIPOENTREGA")));
 
-            }
-        }
-        dr.Dispose();
-        dr.Close();
+        //    }
+        //}
+        //dr.Dispose();
+        //dr.Close();
     }
 
     protected void ImgPPlano_Click(object sender, ImageClickEventArgs e)
@@ -95,8 +95,11 @@ public partial class Forms_Movimento_Default : System.Web.UI.Page
     {
         btnAdiciona.Enabled = true;
         txtNumero.Text = "1";
+
         var data = txtDataAgendamento.Text;
-        var dr = Agenda.NovoNumero(data);
+        var codclinica = txtCodClinica.Text;
+
+        var dr = Agenda.NovoNumero(data, int.Parse(codclinica));
         if (dr.HasRows)
         {
             while (dr.Read())
@@ -106,12 +109,6 @@ public partial class Forms_Movimento_Default : System.Web.UI.Page
                     var ultimo = dr.GetString(dr.GetOrdinal("ULTIMO"));
                     ultimo = (int.Parse(ultimo) + 1).ToString();
                     txtNumero.Text = ultimo;
-                    
-                    //if (int.Parse(ultimo) <= 3)
-                    //{
-                    //    ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Numero de Agendamentos diarios foi Esgotado');", true);
-                    //    btnAdiciona.Enabled = false;
-                    //}
                 }
             }
         }
@@ -152,6 +149,30 @@ public partial class Forms_Movimento_Default : System.Web.UI.Page
         dr.Close();
     }
 
+    private void BuscaAgenda(int codigo, string data)
+    {
+
+        var dr = Agenda.Select(codigo, data);
+
+        if (dr.HasRows)
+        {
+            while (dr.Read())
+            {
+                txtCodigo.Text = dr.GetInt32(dr.GetOrdinal("CODAGENDA")).ToString().Trim();
+                txtNumero.Text = dr.GetInt32(dr.GetOrdinal("NUMEROATENDIMENTO")).ToString().Trim();
+                txtCodClinica.Text = dr.GetInt32(dr.GetOrdinal("CODCLINICA")).ToString().Trim();
+                txtNomeClinica.Text = dr.GetString(dr.GetOrdinal("NOMECLINICA")).Trim();
+                txtCodPaciente.Text = dr.GetInt32(dr.GetOrdinal("CODPACIENTE")).ToString().Trim();
+                txtNomePaciente.Text = dr.GetString(dr.GetOrdinal("NOMEPACIENTE")).Trim();
+                txtCodPlano.Text = dr.GetInt32(dr.GetOrdinal("CODPLANO")).ToString().Trim();
+                txtNomePlano.Text = dr.GetString(dr.GetOrdinal("NOMEPLANO")).Trim();
+                ddlSituacaoagenda.SelectedValue = dr.GetInt32(dr.GetOrdinal("SITUACAOAGENDA")).ToString().Trim();
+            }
+        }
+        dr.Close();
+
+    }
+
     private void BuscaClinica(string codigo)
     {
 
@@ -170,6 +191,48 @@ public partial class Forms_Movimento_Default : System.Web.UI.Page
         dr.Close();
     }
 
+    public string VerPaciente()
+    {
+        int total = 0;
+        int i;
+        var Tem_no_Dia = "N";
+        var NomePaciente = "";
+
+        total = Grid_Agenda.Rows.Count;
+
+        for (i = 0; i < total; i++)
+        {
+            if (Grid_Agenda.Rows[i].RowType == DataControlRowType.DataRow)
+            {
+                NomePaciente = Grid_Agenda.Rows[i].Cells[1].Text;
+                if (NomePaciente.Trim() == txtNomePaciente.Text.Trim())
+                {
+                    Tem_no_Dia = "S";
+                }
+            }
+        }
+        return Tem_no_Dia;
+    }
+
+
+    protected void btnAdiciona_Click(object sender, ImageClickEventArgs e)
+    {
+        
+        if (txtCodigo.Text.Trim() == "0")
+        {
+
+            Gravar(true, 0, int.Parse(txtNumero.Text));
+
+        }
+        else
+        {
+
+            Gravar(false, int.Parse(txtCodigo.Text.Trim()), int.Parse(txtNumero.Text));
+
+        }
+
+        CarregaAgendaData();
+    }
 
     private void Gravar(bool novo, int codigo, int sequencial)
     {
@@ -183,17 +246,39 @@ public partial class Forms_Movimento_Default : System.Web.UI.Page
         var codpaciente = txtCodPaciente.Text.Trim();
         var codplano = txtCodPlano.Text.Trim();
         var situacaoagenda = ddlSituacaoagenda.SelectedValue;
+        if (codplano == "") { codplano = "1"; }
+        if (situacaoagenda == "0") { situacaoagenda = "1"; }
+
+        var p = new Agenda();
+        var Paciente_Tem_no_Dia = p.TemPaciente(txtDataAgendamento.Text.Trim(), int.Parse(txtCodPaciente.Text.Trim()));
+
+       
 
         try
         {
             var m = new Agenda(codigo, dataagenda, int.Parse(codclinica), numeroatendimento, int.Parse(codpaciente), int.Parse(codplano), int.Parse(situacaoagenda));
             if (novo)
+            {
+                if (int.Parse(txtNumero.Text) >= 21)
+                {
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Numero de Agendamentos diarios foi Esgotado');", true);
+                    return;
+                }
+                if (Paciente_Tem_no_Dia == true)
+                {
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Paciente já foi agendado para esse dia ');", true);
+                    return;
+                }
+
                 m.Insert();
+            }
             else
+            {
                 m.Update();
 
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Registro gravado com sucesso!');", true);
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "window.location = 'Default.aspx'", true);
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Registro gravado com sucesso!');", true);
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "window.location = 'Default.aspx'", true);
+            }
         }
         catch (Exception erro)
         {
@@ -201,6 +286,20 @@ public partial class Forms_Movimento_Default : System.Web.UI.Page
             "alert('Erro ao tentar solicitação! Erro: " + erro + ".');", true);
         }
 
+
+    }
+
+    public void LimpaTela()
+    {
+        //txtDataAgendamento.Text = "";
+        //txtCodClinica.Text = "";
+        //txtNomeClinica.Text = "";
+        txtCodPaciente.Text = "";
+        txtNomePaciente.Text = "";
+        txtCodPlano.Text = "";
+        txtNomePlano.Text = "";
+
+        ddlSituacaoagenda.SelectedIndex = 0;
 
     }
 
@@ -219,64 +318,49 @@ public partial class Forms_Movimento_Default : System.Web.UI.Page
         Response.Redirect("~/Forms/Default.aspx?");
     }
 
-    public string VerPaciente()
-    {
-        int total = 0;
-        int i;
-        var Tem_no_Dia = "N";
-        var NomePaciente = "";
-
-        total = Grid_Agenda.Rows.Count;
-
-        for (i = 0; i < total; i++)
-        {
-            if (Grid_Agenda.Rows[i].RowType == DataControlRowType.DataRow)
-            {
-                NomePaciente = Grid_Agenda.Rows[i].Cells[1].Text;
-                if(NomePaciente.Trim() == txtNomePaciente.Text.Trim())
-                {
-                    Tem_no_Dia = "S";
-                }
-            }
-        }
-        return Tem_no_Dia;
-    }
-
-    protected void btnAdiciona_Click(object sender, ImageClickEventArgs e)
-    {
-        var Paciente_Tem_no_Dia = VerPaciente();
-
-        if (int.Parse(txtNumero.Text) >= 21)
-        {
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Numero de Agendamentos diarios foi Esgotado');", true);
-            return;
-        }
-        if (Paciente_Tem_no_Dia == "S")
-        {
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Paciente já foi agendado para esse dia ');", true);
-            return;
-        }
-
-
-    }
 
     private void CarregaAgenda()
     {
         var data = txtDataAgendamento.Text;
+        var codclinica = txtCodClinica.Text;
+
+        if (codclinica == "")
+        {
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Favor informar a Clinica ');", true);
+            return;
+        }
+
+        Grid_Agenda.DataSource = Agenda.Select(data, int.Parse(codclinica));
+        Grid_Agenda.DataBind();
+        LimpaTela();
+        NovoNumero();
+    }
+
+    private void CarregaAgendaData()
+    {
+        var data = txtDataAgendamento.Text;
+
         Grid_Agenda.DataSource = Agenda.Select(data);
         Grid_Agenda.DataBind();
+        LimpaTela();
         NovoNumero();
+
+
     }
 
     protected void Grid_Agenda_RowCommand(object sender, GridViewCommandEventArgs e)
     {
+        var data = txtDataAgendamento.Text;
+
         var index = Convert.ToInt32(e.CommandArgument);
         if (e.CommandName == "editar")
         {
-            var id = Grid_Agenda.Rows[index].Cells[0].Text.Trim();
+            var codigo = Grid_Agenda.Rows[index].Cells[0].Text.Trim();
+            var numero = Grid_Agenda.Rows[index].Cells[1].Text.Trim();
+           
 
+            BuscaAgenda(int.Parse(numero), data);
         }
-
 
     }
 
@@ -419,6 +503,7 @@ public partial class Forms_Movimento_Default : System.Web.UI.Page
             {
                 txtCodClinica.Text = id.ToString();
                 BuscaClinica(txtCodClinica.Text);
+                CarregaAgenda();
                 Modal_Clinica.Hide();
             }
         }
@@ -432,11 +517,9 @@ public partial class Forms_Movimento_Default : System.Web.UI.Page
 
     }
 
-
-
     protected void txtDataAgendamento_TextChanged(object sender, EventArgs e)
     {
-        CarregaAgenda();
+        CarregaAgendaData();
     }
     protected void txtCodPaciente_TextChanged(object sender, EventArgs e)
     {

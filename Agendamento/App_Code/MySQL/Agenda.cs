@@ -47,11 +47,11 @@ namespace Agendamento.App_Code.MySQL
             var db = new DBAcess();
             var Mysql = " INSERT INTO agenda(";
 
-            Mysql = Mysql + " DATA, CODCLINICA, NUMEROATENDIMENTO, CODPACIENTE, CODPLANO, SITUACAOAGENDA ";
+            Mysql = Mysql + " DATAAGENDA, CODCLINICA, NUMEROATENDIMENTO, CODPACIENTE, CODPLANO, SITUACAOAGENDA ";
             Mysql = Mysql + ")";
 
             Mysql = Mysql + " VALUES (";
-            Mysql = Mysql + " @DATA, @CODCLINICA, @NUMEROATENDIMENTO, @CODPACIENTE, @CODPLANO, @SITUACAOAGENDA ";
+            Mysql = Mysql + " @DATAAGENDA, @CODCLINICA, @NUMEROATENDIMENTO, @CODPACIENTE, @CODPLANO, @SITUACAOAGENDA ";
             Mysql = Mysql + ");";
 
             // RETORNA O ULTIMO ITEM ADICIONADO 
@@ -60,7 +60,7 @@ namespace Agendamento.App_Code.MySQL
             db.CommandText = Mysql + select;
 
             db.AddParameter("@CODAGENDA", Codagenda);
-            db.AddParameter("@DATA", Convert.ToDateTime(Data));
+            db.AddParameter("@DATAAGENDA", Convert.ToDateTime(Data));
             db.AddParameter("@CODCLINICA", Codclinica);
             db.AddParameter("@NUMEROATENDIMENTO", Numeroatendimento);
             db.AddParameter("@CODPACIENTE", Codpaciente);
@@ -84,14 +84,14 @@ namespace Agendamento.App_Code.MySQL
             var Mysql = " UPDATE agenda ";
 
             Mysql = Mysql + "SET ";
-            Mysql = Mysql + " DATA = @DATA, CODCLINICA = @CODCLINICA, NUMEROATENDIMENTO = @NUMEROATENDIMENTO, ";
+            Mysql = Mysql + " DATAAGENDA = @DATAAGENDA, CODCLINICA = @CODCLINICA, NUMEROATENDIMENTO = @NUMEROATENDIMENTO, ";
             Mysql = Mysql + " CODPACIENTE = @CODPACIENTE, CODPLANO = @CODPLANO, SITUACAOAGENDA = @SITUACAOAGENDA  ";
 
             Mysql = Mysql + " WHERE CODAGENDA = @CODAGENDA;";
             db.CommandText = Mysql;
 
             db.AddParameter("@CODAGENDA", Codagenda);
-            db.AddParameter("@DATA", Convert.ToDateTime(Data));
+            db.AddParameter("@DATAAGENDA", Convert.ToDateTime(Data));
             db.AddParameter("@CODCLINICA", Codclinica);
             db.AddParameter("@NUMEROATENDIMENTO", Numeroatendimento);
             db.AddParameter("@CODPACIENTE", Codpaciente);
@@ -151,6 +151,7 @@ namespace Agendamento.App_Code.MySQL
             Mysql = Mysql + " INNER JOIN situacao S ON S.CODSITUACAO = A.SITUACAOAGENDA   ";
 
             Mysql = Mysql + " WHERE A.DATAAGENDA = @DATAAGENDA ";
+            Mysql = Mysql + " ORDER BY A.CODAGENDA; ";
 
             db.CommandText = Mysql;
             db.AddParameter("@DATAAGENDA", Convert.ToDateTime(data));
@@ -159,14 +160,52 @@ namespace Agendamento.App_Code.MySQL
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
-        public static MySqlDataReader Select(int codagenda)
+        public static DataSet Select(string data, int codclinica)
         {
             var db = new DBAcess();
-            const string select = " SELECT * ";
-            const string from = " FROM agenda ";
-            const string where = " WHERE CODAGENDA = @CODAGENDA ";
-            db.CommandText = select + from + where;
-            db.AddParameter("@CODAGENDA", codagenda);
+            var Mysql = " SELECT A.CODAGENDA, DATE_FORMAT(A.DATAAGENDA, '%d/%m/%Y') AS DATAAGENDA, A.NUMEROATENDIMENTO, A.CODPACIENTE, P.NOME AS NOMEPACIENTE, ";
+            Mysql = Mysql + " A.CODCLINICA, C.NOME AS NOMECLINICA, A.CODPLANO, PL.NOME AS NOMEPLANO, ";
+            Mysql = Mysql + " A.SITUACAOAGENDA, S.NOME AS NOMESITUACAO ";
+            Mysql = Mysql + " FROM agenda A ";
+            Mysql = Mysql + " INNER JOIN paciente P ON P.CODPACIENTE = A.CODPACIENTE ";
+            Mysql = Mysql + " INNER JOIN clinica C ON C.CODCLINICA = A.CODCLINICA ";
+            Mysql = Mysql + " INNER JOIN plano PL ON PL.CODPLANO = A.CODPLANO ";
+            Mysql = Mysql + " INNER JOIN situacao S ON S.CODSITUACAO = A.SITUACAOAGENDA   ";
+
+            Mysql = Mysql + " WHERE A.DATAAGENDA = @DATAAGENDA ";
+            Mysql = Mysql + " AND A.CODCLINICA = @CODCLINICA ";
+
+            Mysql = Mysql + " ORDER BY A.CODAGENDA; ";
+
+            db.CommandText = Mysql;
+            db.AddParameter("@DATAAGENDA", Convert.ToDateTime(data));
+            db.AddParameter("@CODCLINICA", codclinica);
+            var ds = db.ExecuteDataSet();
+            return ds;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public static MySqlDataReader Select(int numero, string data)
+        {
+            var db = new DBAcess();
+            var Mysql = " SELECT A.CODAGENDA, DATE_FORMAT(A.DATAAGENDA, '%d/%m/%Y') AS DATAAGENDA, A.NUMEROATENDIMENTO, A.CODPACIENTE, P.NOME AS NOMEPACIENTE, ";
+            Mysql = Mysql + " A.CODCLINICA, C.NOME AS NOMECLINICA, A.CODPLANO, PL.NOME AS NOMEPLANO, ";
+            Mysql = Mysql + " A.SITUACAOAGENDA, S.NOME AS NOMESITUACAO ";
+            Mysql = Mysql + " FROM agenda A ";
+            Mysql = Mysql + " INNER JOIN paciente P ON P.CODPACIENTE = A.CODPACIENTE ";
+            Mysql = Mysql + " INNER JOIN clinica C ON C.CODCLINICA = A.CODCLINICA ";
+            Mysql = Mysql + " INNER JOIN plano PL ON PL.CODPLANO = A.CODPLANO ";
+            Mysql = Mysql + " INNER JOIN situacao S ON S.CODSITUACAO = A.SITUACAOAGENDA   ";
+
+            Mysql = Mysql + " WHERE A.DATAAGENDA = @DATAAGENDA ";
+            Mysql = Mysql + " AND A.NUMEROATENDIMENTO = @NUMEROATENDIMENTO ";
+
+
+            Mysql = Mysql + " ORDER BY A.CODAGENDA; ";
+
+            db.CommandText = Mysql;
+            db.AddParameter("@NUMEROATENDIMENTO", numero);
+            db.AddParameter("@DATAAGENDA", Convert.ToDateTime(data));
 
             var dr = (MySqlDataReader)db.ExecuteReader();
             return dr;
@@ -178,7 +217,7 @@ namespace Agendamento.App_Code.MySQL
             var db = new DBAcess();
             var Mysql = " SELECT MAX(A.NUMEROATENDIMENTO) AS ULTIMO ";
             Mysql = Mysql + " FROM agenda A ";
-           
+
             Mysql = Mysql + " WHERE A.DATAAGENDA = @DATAAGENDA ";
 
             db.CommandText = Mysql;
@@ -187,6 +226,52 @@ namespace Agendamento.App_Code.MySQL
             var dr = (MySqlDataReader)db.ExecuteReader();
             return dr;
         }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public static MySqlDataReader NovoNumero(string data, int codclinica)
+        {
+            var db = new DBAcess();
+            var Mysql = " SELECT MAX(A.NUMEROATENDIMENTO) AS ULTIMO ";
+            Mysql = Mysql + " FROM agenda A ";
+
+            Mysql = Mysql + " WHERE A.DATAAGENDA = @DATAAGENDA ";
+            Mysql = Mysql + " AND A.CODCLINICA = @CODCLINICA ";
+
+            db.CommandText = Mysql;
+            db.AddParameter("@DATAAGENDA", Convert.ToDateTime(data));
+            db.AddParameter("@CODCLINICA", codclinica);
+
+            var dr = (MySqlDataReader)db.ExecuteReader();
+            return dr;
+        }
+
+        public bool TemPaciente(string data, int codpaciente)
+        {
+            bool status = false;
+            int retorno;
+
+            var db = new DBAcess();
+            var Mysql = " SELECT A.CODAGENDA ";
+            Mysql = Mysql + " FROM agenda A ";
+
+            Mysql = Mysql + " WHERE A.DATAAGENDA = @DATAAGENDA ";
+          
+            Mysql = Mysql + " AND A.CODPACIENTE = @CODPACIENTE ";
+
+            db.CommandText = Mysql;
+            db.AddParameter("@DATAAGENDA", Convert.ToDateTime(data));
+           
+            db.AddParameter("@CODPACIENTE", codpaciente);
+
+
+            retorno = Convert.ToInt32(db.ExecuteScalar());
+            if (retorno > 0)
+                status = true;
+            return status;
+
+
+        }
+
 
     }
 }

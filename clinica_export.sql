@@ -27,13 +27,17 @@ CREATE TABLE IF NOT EXISTS `agenda` (
   `CODPLANO` int(11) DEFAULT NULL,
   `SITUACAOAGENDA` int(11) DEFAULT NULL,
   PRIMARY KEY (`CODAGENDA`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
--- Copiando dados para a tabela clinica.agenda: ~2 rows (aproximadamente)
+-- Copiando dados para a tabela clinica.agenda: ~6 rows (aproximadamente)
 /*!40000 ALTER TABLE `agenda` DISABLE KEYS */;
 INSERT INTO `agenda` (`CODAGENDA`, `DATAAGENDA`, `CODCLINICA`, `NUMEROATENDIMENTO`, `CODPACIENTE`, `CODPLANO`, `SITUACAOAGENDA`) VALUES
-	(1, '2020-04-09 00:00:00', 1, 1, 1, 1, 1),
-	(2, '2020-04-09 00:00:00', 3, 2, 3, 4, 1);
+	(1, '2020-04-10 00:00:00', 1, 1, 4, 1, 2),
+	(2, '2020-04-10 00:00:00', 1, 2, 3, 2, 5),
+	(3, '2020-04-10 00:00:00', 1, 3, 5, 4, 4),
+	(4, '2020-04-10 00:00:00', 2, 1, 6, 2, 2),
+	(5, '2020-04-10 00:00:00', 2, 2, 9, 1, 1),
+	(6, '2020-04-10 00:00:00', 2, 3, 14, 4, 1);
 /*!40000 ALTER TABLE `agenda` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela clinica.clinica
@@ -103,15 +107,16 @@ CREATE TABLE IF NOT EXISTS `plano` (
   `DESCRICAO` varchar(255) DEFAULT NULL,
   `NUMEROPLANO` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`CODPLANO`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
--- Copiando dados para a tabela clinica.plano: ~4 rows (aproximadamente)
+-- Copiando dados para a tabela clinica.plano: ~5 rows (aproximadamente)
 /*!40000 ALTER TABLE `plano` DISABLE KEYS */;
 INSERT INTO `plano` (`CODPLANO`, `NOME`, `DESCRICAO`, `NUMEROPLANO`) VALUES
-	(1, 'IPASGO', 'PLANO DE SAUDE DO ESTADO', '123456'),
+	(1, 'SEM PLANO', 'SEM PLANO', '00000'),
 	(2, 'UNIMED', 'PLANO', '456666'),
 	(3, 'PROMED', 'PLANO', '123333'),
-	(4, 'SULAMERICA', 'PLANO', '789999');
+	(4, 'SULAMERICA', 'PLANO', '789999'),
+	(5, 'IPASGO', 'PLANO DE SAUDE DO ESTADO', '12345');
 /*!40000 ALTER TABLE `plano` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela clinica.situacao
