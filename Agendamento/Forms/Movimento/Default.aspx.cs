@@ -99,6 +99,8 @@ public partial class Forms_Movimento_Default : System.Web.UI.Page
         var data = txtDataAgendamento.Text;
         var codclinica = txtCodClinica.Text;
 
+        if(codclinica == "") { return; }
+
         var dr = Agenda.NovoNumero(data, int.Parse(codclinica));
         if (dr.HasRows)
         {

@@ -68,27 +68,24 @@
                     </div>
                     </asp:HyperLink>
                 </td>
-                <%--    <td id="Relatorios" style="width: 450px;">
-                <asp:HyperLink runat="server" CssClass="linkInicioIcones" ID="HyperLink5" NavigateUrl="~/Sec/Default.aspx">
-                    <div class="divInicioIcones">
-                        <table width="100%">
-                            <tr>
-                                <td style="width: 64px;">
-                                    <div class="divImgInicio">
-                                        <asp:Image ID="Image4" runat="server" ImageUrl="~/Sec/Imagens/Relatorios.png" />
+                <td id="ConsPacientes" style="width: 450px;">
+                    <asp:HyperLink runat="server" CssClass="linkInicioIcones" ID="HyperLink5" NavigateUrl="~/Forms/Consultas/Pacientes/Default.aspx">
+                        <div class="divInicioIcones">
+                            <table width="100%">
+                                <tr>
+                                    <td style="width: 64px;">
+                                     <div class="divImgInicio">
+                                        <asp:Image runat="server" ImageUrl="~/Forms/Imagens/Menu/ConsPacientes.png"/>
                                     </div>
                                 </td>
-                                <td>
-                                    <b>Relatorios</b><br />
-                                    <a>- Relatorios. </a>
-                                    <br />
-                                    <b>Visualização Relatorios!</b>
+                                <td style="color:darkblue">
+                                    <b>Consulta de Paciente</b>
                                 </td>
-                            </tr>
-                        </table>
-                    </div>
-                </asp:HyperLink>
-            </td>--%>
+                                </tr>
+                            </table>
+                        </div>
+                    </asp:HyperLink>
+                </td>
             </tr>
             <tr id="Linha3">
 
@@ -104,6 +101,24 @@
                                 </td>
                                 <td style="color:darkblue">
                                     <b>Plano</b>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    </asp:HyperLink>
+                </td>
+                <td id="Vagas">
+                    <asp:HyperLink runat="server" CssClass="linkInicioIcones" ID="HyperLink3" NavigateUrl="~/Forms/Consultas/Vagas/Default.aspx">
+                    <div class="divInicioIcones">
+                        <table width="100%">
+                            <tr>
+                                <td style="width: 64px;">
+                                     <div class="divImgInicio">
+                                        <asp:Image runat="server" ImageUrl="~/Forms/Imagens/Menu/ConsVagas.png"/>
+                                    </div>
+                                </td>
+                                <td style="color:darkblue">
+                                    <b>Consulta de Vagas</b>
                                 </td>
                             </tr>
                         </table>

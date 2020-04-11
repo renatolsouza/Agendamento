@@ -138,6 +138,51 @@ namespace Agendamento.App_Code.MySQL
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
+        public static DataSet AgendaPacientes(string por, string dtinicial, string dtfinal, int situacao)
+        {
+            var db = new DBAcess();
+            var Mysql = " SELECT A.CODAGENDA, DATE_FORMAT(A.DATAAGENDA, '%d/%m/%Y') AS DATAAGENDA, A.NUMEROATENDIMENTO, A.CODPACIENTE, P.NOME AS NOMEPACIENTE, ";
+            Mysql = Mysql + " A.CODCLINICA, C.NOME AS NOMECLINICA, A.CODPLANO, PL.NOME AS NOMEPLANO, ";
+            Mysql = Mysql + " A.SITUACAOAGENDA, S.NOME AS NOMESITUACAO ";
+            Mysql = Mysql + " FROM agenda A ";
+            Mysql = Mysql + " INNER JOIN paciente P ON P.CODPACIENTE = A.CODPACIENTE ";
+            Mysql = Mysql + " INNER JOIN clinica C ON C.CODCLINICA = A.CODCLINICA ";
+            Mysql = Mysql + " INNER JOIN plano PL ON PL.CODPLANO = A.CODPLANO ";
+            Mysql = Mysql + " INNER JOIN situacao S ON S.CODSITUACAO = A.SITUACAOAGENDA   ";
+
+            Mysql = Mysql + " WHERE A.DATAAGENDA BETWEEN @DATAINICIAL AND @DATAFINAL ";
+            if (situacao != 0) { Mysql = Mysql + " AND A.SITUACAOAGENDA = @SITUACAOAGENDA "; }
+
+            Mysql = Mysql + " ORDER BY A.DATAAGENDA, A.CODCLINICA, A.NUMEROATENDIMENTO; ";
+
+            db.CommandText = Mysql;
+
+            db.AddParameter("@DATAINICIAL", Convert.ToDateTime(dtinicial));
+            db.AddParameter("@DATAFINAL", Convert.ToDateTime(dtfinal));
+            db.AddParameter("@SITUACAOAGENDA", situacao);
+            var ds = db.ExecuteDataSet();
+            return ds;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public static DataSet BuscaVaga(string data, int clinica)
+        {
+            var db = new DBAcess();
+            var Mysql = "SELECT COUNT(A.NUMEROATENDIMENTO) AS QTATENDIMENTOS ";
+            Mysql = Mysql + " FROM agenda A ";
+            Mysql = Mysql + " WHERE A.DATAAGENDA = @DATAAGENDA ";
+            if (clinica != 0) { Mysql = Mysql + " AND A.CODCLINICA = @CODCLINICA "; }
+
+            db.CommandText = Mysql;
+
+            db.AddParameter("@DATAAGENDA", Convert.ToDateTime(data));
+            db.AddParameter("@CODCLINICA", clinica);
+
+            var ds = db.ExecuteDataSet();
+            return ds;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
         public static DataSet Select(string data)
         {
             var db = new DBAcess();

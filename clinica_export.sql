@@ -27,9 +27,9 @@ CREATE TABLE IF NOT EXISTS `agenda` (
   `CODPLANO` int(11) DEFAULT NULL,
   `SITUACAOAGENDA` int(11) DEFAULT NULL,
   PRIMARY KEY (`CODAGENDA`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
--- Copiando dados para a tabela clinica.agenda: ~6 rows (aproximadamente)
+-- Copiando dados para a tabela clinica.agenda: ~11 rows (aproximadamente)
 /*!40000 ALTER TABLE `agenda` DISABLE KEYS */;
 INSERT INTO `agenda` (`CODAGENDA`, `DATAAGENDA`, `CODCLINICA`, `NUMEROATENDIMENTO`, `CODPACIENTE`, `CODPLANO`, `SITUACAOAGENDA`) VALUES
 	(1, '2020-04-10 00:00:00', 1, 1, 4, 1, 2),
@@ -37,7 +37,12 @@ INSERT INTO `agenda` (`CODAGENDA`, `DATAAGENDA`, `CODCLINICA`, `NUMEROATENDIMENT
 	(3, '2020-04-10 00:00:00', 1, 3, 5, 4, 4),
 	(4, '2020-04-10 00:00:00', 2, 1, 6, 2, 2),
 	(5, '2020-04-10 00:00:00', 2, 2, 9, 1, 1),
-	(6, '2020-04-10 00:00:00', 2, 3, 14, 4, 1);
+	(6, '2020-04-10 00:00:00', 2, 3, 14, 4, 1),
+	(7, '2020-04-11 00:00:00', 1, 1, 5, 1, 2),
+	(8, '2020-04-11 00:00:00', 1, 2, 6, 2, 1),
+	(9, '2020-04-11 00:00:00', 1, 3, 7, 2, 1),
+	(10, '2020-04-10 00:00:00', 2, 4, 22, 1, 1),
+	(11, '2020-04-11 00:00:00', 1, 4, 20, 1, 1);
 /*!40000 ALTER TABLE `agenda` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela clinica.clinica
