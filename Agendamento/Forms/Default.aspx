@@ -13,7 +13,7 @@
         <table width="100%">
             <tr id="Linha1">
                 <td id="Clinica" style="width: 450px;">
-                    <asp:HyperLink runat="server" CssClass="linkInicioIcones" ID="linkAtendimento" NavigateUrl="~/Forms/Cadastro/Clinica/Default.aspx">
+                    <asp:HyperLink runat="server" ToolTip="Clique para Cadastrar Clinica" CssClass="linkInicioIcones" ID="linkAtendimento" NavigateUrl="~/Forms/Cadastro/Clinica/Default.aspx">
                     <div class="divInicioIcones">
                         <table width="100%">
                             <tr>
@@ -31,7 +31,7 @@
                     </asp:HyperLink>
                 </td>
                 <td id="Agenda">
-                    <asp:HyperLink runat="server" CssClass="linkInicioIcones" ID="HyperLink1" NavigateUrl="~/Forms/Movimento/Default.aspx">
+                    <asp:HyperLink runat="server" ToolTip="Clique para Efetuar um Agendamento" CssClass="linkInicioIcones" ID="HyperLink1" NavigateUrl="~/Forms/Movimento/Default.aspx">
                     <div class="divInicioIcones">
                         <table width="100%">
                             <tr>
@@ -51,7 +51,7 @@
             </tr>
             <tr id="Linha2">
                 <td id="Paciente" style="width: 450px;">
-                    <asp:HyperLink runat="server" CssClass="linkInicioIcones" ID="HyperLink2" NavigateUrl="~/Forms/Cadastro/Paciente/Default.aspx">
+                    <asp:HyperLink runat="server" ToolTip="Clique para Cadastrar Paciente" CssClass="linkInicioIcones" ID="HyperLink2" NavigateUrl="~/Forms/Cadastro/Paciente/Default.aspx">
                     <div class="divInicioIcones">
                         <table width="100%">
                             <tr>
@@ -69,7 +69,7 @@
                     </asp:HyperLink>
                 </td>
                 <td id="ConsPacientes" style="width: 450px;">
-                    <asp:HyperLink runat="server" CssClass="linkInicioIcones" ID="HyperLink5" NavigateUrl="~/Forms/Consultas/Pacientes/Default.aspx">
+                    <asp:HyperLink runat="server" ToolTip="Clique para Efetuar Consulta de Paciente" CssClass="linkInicioIcones" ID="HyperLink5" NavigateUrl="~/Forms/Consultas/Pacientes/Default.aspx">
                         <div class="divInicioIcones">
                             <table width="100%">
                                 <tr>
@@ -90,7 +90,7 @@
             <tr id="Linha3">
 
                 <td id="Plano">
-                    <asp:HyperLink runat="server" CssClass="linkInicioIcones" ID="HyperLink6" NavigateUrl="~/Forms/Cadastro/Plano/Default.aspx">
+                    <asp:HyperLink runat="server" ToolTip="Clique para Cadastrar Plano de Saúde" CssClass="linkInicioIcones" ID="HyperLink6" NavigateUrl="~/Forms/Cadastro/Plano/Default.aspx">
                     <div class="divInicioIcones">
                         <table width="100%">
                             <tr>
@@ -108,7 +108,7 @@
                     </asp:HyperLink>
                 </td>
                 <td id="Vagas">
-                    <asp:HyperLink runat="server" CssClass="linkInicioIcones" ID="HyperLink3" NavigateUrl="~/Forms/Consultas/Vagas/Default.aspx">
+                    <asp:HyperLink runat="server" ToolTip="Clique para Consultar Vagas" CssClass="linkInicioIcones" ID="HyperLink3" NavigateUrl="~/Forms/Consultas/Vagas/Default.aspx">
                     <div class="divInicioIcones">
                         <table width="100%">
                             <tr>

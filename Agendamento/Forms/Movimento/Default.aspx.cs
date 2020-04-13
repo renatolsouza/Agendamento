@@ -99,7 +99,7 @@ public partial class Forms_Movimento_Default : System.Web.UI.Page
         var data = txtDataAgendamento.Text;
         var codclinica = txtCodClinica.Text;
 
-        if(codclinica == "") { return; }
+        if (codclinica == "") { return; }
 
         var dr = Agenda.NovoNumero(data, int.Parse(codclinica));
         if (dr.HasRows)
@@ -219,7 +219,7 @@ public partial class Forms_Movimento_Default : System.Web.UI.Page
 
     protected void btnAdiciona_Click(object sender, ImageClickEventArgs e)
     {
-        
+
         if (txtCodigo.Text.Trim() == "0")
         {
 
@@ -254,7 +254,7 @@ public partial class Forms_Movimento_Default : System.Web.UI.Page
         var p = new Agenda();
         var Paciente_Tem_no_Dia = p.TemPaciente(txtDataAgendamento.Text.Trim(), int.Parse(txtCodPaciente.Text.Trim()));
 
-       
+
 
         try
         {
@@ -359,11 +359,25 @@ public partial class Forms_Movimento_Default : System.Web.UI.Page
         {
             var codigo = Grid_Agenda.Rows[index].Cells[0].Text.Trim();
             var numero = Grid_Agenda.Rows[index].Cells[1].Text.Trim();
-           
+
 
             BuscaAgenda(int.Parse(numero), data);
         }
 
+    }
+    protected void Grid_Agenda_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        try
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Cells[6].ToolTip = "Clique para Editar o Registro";
+               
+            }
+        }
+        catch (Exception _e)
+        {
+        }
     }
 
     //ESSE AQUI É DA PESQUISA SUSPENSA
@@ -539,6 +553,8 @@ public partial class Forms_Movimento_Default : System.Web.UI.Page
         //    BuscaClinica(txtCodClinica.Text);
         //}
     }
+
+
 
 
 

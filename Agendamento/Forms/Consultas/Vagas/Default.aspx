@@ -60,7 +60,7 @@
     <div class="auto-style1">
         <asp:UpdatePanel runat="server">
             <ContentTemplate>
-                <h1 class="auto-style2">Consulta de Pacientes</h1>
+                <h1 class="auto-style2">Consulta de Vagas</h1>
                 <div class="auto-style1">
                     <br />
                 </div>
@@ -80,7 +80,7 @@
                                 </ajax:CalendarExtender>
                                 <ajax:MaskedEditExtender ID="mkDataInicial" runat="server" ClearMaskOnLostFocus="false" InputDirection="LeftToRight" Mask="99/99/9999" MaskType="Date" TargetControlID="txtDataInicial">
                                 </ajax:MaskedEditExtender>
-                                <asp:ImageButton ID="btnCalendarnasc" runat="server" CssClass="BotaoCalendar" Height="26px" ImageUrl="~/Forms/Imagens/calendar2.png" />
+                                <asp:ImageButton ID="btnCalendarnasc" runat="server" CssClass="BotaoCalendar" Height="26px" ImageUrl="~/Forms/Imagens/calendar2.png" ToolTip="Clique para escolher a data" />
                                 <br />
                                 <asp:RangeValidator ID="rvDataInicial" runat="server" ControlToValidate="txtDataInicial" Display="None" ErrorMessage="A Data Informada é Inválida!" MaximumValue="31/12/2050" MinimumValue="01/01/1900" SetFocusOnError="true" Type="Date" ValidationGroup="Gravar"></asp:RangeValidator>
                                 <ajax:ValidatorCalloutExtender ID="v1DataInicial" runat="server" HighlightCssClass="campoObrigatorio" TargetControlID="rvDataInicial" Width="265px">
@@ -92,14 +92,14 @@
                             <td class="auto-style25">
                                 &nbsp;</td>
                             <td>
-                                <asp:Button ID="btnCancelar" runat="server" CssClass="g-button g-button-red" Height="30" PostBackUrl="../../Default.aspx" Text="Cancelar" Width="100px" />
+                                <asp:Button ID="btnCancelar" runat="server" CssClass="g-button g-button-red" Height="30" PostBackUrl="../../Default.aspx" Text="Cancelar" Width="100px" ToolTip="Clique para Retornar ao Menu" />
                             </td>
                         </tr>
                         <tr>
                             <td class="auto-style15"></td>
                             <td class="auto-style26"></td>
                             <td>
-                                <asp:Button ID="btnBuscar" runat="server" CssClass="g-button g-button-red" Height="30" OnClick="BtnBuscarClick" Text="Buscar" Width="100px" />
+                                <asp:Button ID="btnBuscar" runat="server" CssClass="g-button g-button-red" Height="30" OnClick="BtnBuscarClick" Text="Buscar" Width="100px" ToolTip="Clique para Pesquisar" />
                             </td>
                         </tr>
                         <tr>
@@ -109,7 +109,7 @@
                         </tr>
                         <tr>
                             <td class="auto-style16">
-                                <asp:DropDownList ID="ddlclinica" runat="server" DataTextField="NOME" DataValueField="CODCLINICA" Height="27px" Width="282px">
+                                <asp:DropDownList ID="ddlclinica" runat="server" DataTextField="NOME" DataValueField="CODCLINICA" Height="27px" Width="282px" ToolTip="Escolha a Clinica">
                                 </asp:DropDownList>
                             </td>
                             <td class="auto-style17">

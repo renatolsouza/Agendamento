@@ -25,20 +25,20 @@
                         <div class="auto-style1">
 
                             <asp:Button runat="server" ID="btnNovo" PostBackUrl="Cadastro.aspx" Text="Novo" Width="100px" Height="30"
-                                CssClass="g-button g-button-red" />
+                                CssClass="g-button g-button-red" ToolTip="Clique para Cadastrar Clinica" />
                             <br />
                             <br style="font-size: 5px;" />
-                            <asp:DropDownList runat="server" ID="txtPor">
+                            <asp:DropDownList runat="server" ID="txtPor" ToolTip="Escolha o parametro da pesquisa">
                                 <asp:ListItem Value="todos">TODOS</asp:ListItem>
                                 <asp:ListItem Value="nome">NOME</asp:ListItem>
                             </asp:DropDownList>
                             <asp:TextBox runat="server" ID="txtBuscar" Width="653" AutoPostBack="true" OnTextChanged="TxtBuscarTextChanged"></asp:TextBox>
                             <asp:Button runat="server" ID="btnBuscar" Text="Buscar" CssClass="g-button g-button-red"
-                                Width="100px" Height="30" OnClick="BtnBuscarClick" />
+                                Width="100px" Height="30" OnClick="BtnBuscarClick" ToolTip="Clique para efetuar a pesquisa" />
                             <br />
                             <br style="font-size: 5px;" />
                             <asp:Button runat="server" ID="btnCancelar" PostBackUrl="../../Default.aspx" Text="Cancelar" Width="100px" Height="30"
-                                CssClass="g-button g-button-red" />
+                                CssClass="g-button g-button-red" ToolTip="Clique para retornar ao Menu" />
                         </div>
                         <div class="auto-style1">
                             <br style="font-size: 5px;" />

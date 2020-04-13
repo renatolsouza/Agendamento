@@ -271,7 +271,7 @@
                                 TabIndex="1" OnTextChanged="txtDataAgendamento_TextChanged"></asp:TextBox>
 
                             <asp:ImageButton runat="server" ID="btnCalendarnasc" ImageUrl="~/Forms/Imagens/calendar2.png"
-                                Height="26px" CssClass="BotaoCalendar" /><br />
+                                Height="26px" CssClass="BotaoCalendar" ToolTip="Clique para escolher a data " /><br />
                             <asp:RangeValidator runat="server" ID="rvDataAgendamento" Display="None" SetFocusOnError="true"
                                 ControlToValidate="txtDataAgendamento" ValidationGroup="Gravar" Type="Date" MinimumValue="01/01/1900"
                                 MaximumValue="31/12/2050" ErrorMessage="A Data Informada é Inválida!"></asp:RangeValidator>
@@ -332,7 +332,7 @@
                             <asp:TextBox ID="txtCodClinica" runat="server" AutoPostBack="true" OnTextChanged="txtCodClinica_TextChanged" Width="84px"></asp:TextBox>
                         </td>
                         <td class="style29">
-                            <asp:ImageButton ID="ImgPClinica" runat="server" CssClass="BotaoCalendar" Height="26px" ImageUrl="~/Forms/Imagens/lupa.png" OnClick="ImgPClinica_Click" />
+                            <asp:ImageButton ID="ImgPClinica" runat="server" CssClass="BotaoCalendar" Height="26px" ImageUrl="~/Forms/Imagens/lupa.png" OnClick="ImgPClinica_Click" ToolTip="Clique para escolher a Clinica" />
                         </td>
                         <td class="auto-style16">
                             <asp:TextBox ID="txtNomeClinica" runat="server" Enabled="False" Width="247px"></asp:TextBox>
@@ -376,14 +376,14 @@
                             <asp:TextBox ID="txtCodPaciente" runat="server" AutoPostBack="true" OnTextChanged="txtCodPaciente_TextChanged" TabIndex="2" Width="84px"></asp:TextBox>
                         </td>
                         <td class="style13">
-                            <asp:ImageButton ID="ImgPPaciente" runat="server" CssClass="BotaoCalendar" Height="26px" ImageUrl="~/Forms/Imagens/lupa.png" OnClick="ImgPUnidade_Click" />
+                            <asp:ImageButton ID="ImgPPaciente" runat="server" CssClass="BotaoCalendar" Height="26px" ImageUrl="~/Forms/Imagens/lupa.png" OnClick="ImgPUnidade_Click" ToolTip="Clique para escolher o Paciente" />
                         </td>
                         <td class="style15">
                             <asp:TextBox ID="txtNomePaciente" runat="server" Width="245px" Enabled="False"></asp:TextBox>
                         </td>
                         <td class="auto-style19">&nbsp;</td>
                         <td colspan="2">
-                            <asp:DropDownList ID="ddlSituacaoagenda" runat="server" Height="29px" TabIndex="3" Width="241px">
+                            <asp:DropDownList ID="ddlSituacaoagenda" runat="server" Height="29px" TabIndex="3" Width="241px" ToolTip="Clique para escolher o status ">
                                 <asp:ListItem Value="0">Selecione</asp:ListItem>
                                 <asp:ListItem Value="1">Aguardando atendimento</asp:ListItem>
                                 <asp:ListItem Value="2">Atendido</asp:ListItem>
@@ -423,13 +423,13 @@
                             <asp:TextBox ID="txtCodPlano" runat="server" AutoPostBack="true" OnTextChanged="txtCodPlano_TextChanged" TabIndex="2" Width="84px"></asp:TextBox>
                         </td>
                         <td class="style34">
-                            <asp:ImageButton ID="ImgPPlano" runat="server" CssClass="BotaoCalendar" Height="26px" ImageUrl="~/Forms/Imagens/lupa.png" OnClick="ImgPPlano_Click" />
+                            <asp:ImageButton ID="ImgPPlano" runat="server" CssClass="BotaoCalendar" Height="26px" ImageUrl="~/Forms/Imagens/lupa.png" OnClick="ImgPPlano_Click" ToolTip="Clique para escolher  Plano de Saúde" />
                         </td>
                         <td>
                             <asp:TextBox ID="txtNomePlano" runat="server" Enabled="False" Width="245px"></asp:TextBox>
                         </td>
                         <td class="auto-style19">
-                            <asp:ImageButton ID="btnAdiciona" runat="server" ImageUrl="~/Forms/Imagens/adicionar.png" OnClick="btnAdiciona_Click" Text="Adicionar" Width="28px" />
+                            <asp:ImageButton ID="btnAdiciona" runat="server" ImageUrl="~/Forms/Imagens/adicionar.png" OnClick="btnAdiciona_Click" Text="Adicionar" Width="28px" ToolTip="Clique para Adicionar o Agendamento" />
                         </td>
                         <td class="style8">&nbsp;</td>
                         <td align="center" class="style8">&nbsp;</td>
@@ -452,7 +452,7 @@
             </div>
             <div class="divGrid">
                 <asp:GridView runat="server" ID="Grid_Agenda" CssClass="Grid GridLimpoNot" GridLines="None"
-                    AllowPaging="True" PageSize="20" AutoGenerateColumns="False" OnRowCommand="Grid_Agenda_RowCommand">
+                    AllowPaging="True" PageSize="20" AutoGenerateColumns="False" OnRowCommand="Grid_Agenda_RowCommand" OnRowDataBound="Grid_Agenda_RowDataBound">
                     <Columns>
                         <asp:BoundField DataField="CODAGENDA" HeaderText="CÓDIGO" Visible="False">
                             <ItemStyle Width="50px" ></ItemStyle>
@@ -490,7 +490,7 @@
             </div>
             <div id="divBotao" class="conteudo">
                 <br />
-                <asp:Button runat="server" ID="btnCancelar" Text="Cancelar" CssClass="g-button g-button-red" OnClick="btnCancelar_Click" Style="left: -12px; top: -5px; width: 115px" />
+                <asp:Button runat="server" ID="btnCancelar" Text="Cancelar" CssClass="g-button g-button-red" OnClick="btnCancelar_Click" Style="left: -12px; top: -5px; width: 115px" ToolTip="Clique para retornar ao Menu" />
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
